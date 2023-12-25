@@ -24,7 +24,7 @@ const SearchBox = () => {
         </InputGroup.Text>
       </InputGroup>
     </Form> */}
-      <nav className="navbar navbar-light bg-light ">
+      <nav className="navbar navbar-light bg-light">
         <div className="container-fluid ">
           <form className="d-flex flex-grow-1" onSubmit={handleSearch}>
             <input
@@ -33,7 +33,7 @@ const SearchBox = () => {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-success " type="submit">
               Search
             </button>
           </form>
