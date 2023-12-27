@@ -3,7 +3,7 @@ export const MockTest = () => {
   return (
     <>
       {/* <img height={"100px"} width={"100%"} src={bg} alt="background"/> */}
-      <div className="bg-image">
+      <div className="bg-image rounded m-2 shadow">
         <div className="text-start bg-transparent py-2">
           <img
             className="ms-2"
@@ -42,8 +42,8 @@ export const MockTest = () => {
           </li>
         </ul>
       </div>
-      <div class="d-grid gap-2 mx-2" >
-        <button class="btn btn-primary" type="button" >
+      <div className="d-flex mb-3 ms-3 me-3 navbar fixed-bottom" >
+        <button className="btn btn-primary flex-grow-1" type="button" >
           Start
         </button>
       </div>

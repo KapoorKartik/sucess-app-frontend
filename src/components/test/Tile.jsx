@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 export const Tile = ({ subject, totalTest, validity, isLast }) => {
   console.log("isLast:", isLast);
   return (
-    <>
       <div
         className={
           isLast
@@ -39,6 +38,5 @@ export const Tile = ({ subject, totalTest, validity, isLast }) => {
           </Card.Text>
         </Card.Body>
       </div>
-    </>
   );
 };
