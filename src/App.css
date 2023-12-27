@@ -9,10 +9,10 @@
 
 .bg-image {
   background-image: url("/src/images/hard\ work.jpg");
-  /* background-size: 100% 100%; */
   background-repeat: no-repeat;
   height: 150px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
+}
+
+.liner-gradient {
+  background: linear-gradient(to right,#0e43ca, #9990e1);
 }

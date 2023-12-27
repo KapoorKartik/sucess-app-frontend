@@ -7,6 +7,7 @@ import { Listing } from "./pages/Listing";
 import { Home } from "./pages/Home";
 import { MockTest } from "./pages/MockTest";
 import { Questions } from "./pages/Questions";
+import Timer from "./pages/Timer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       {/* //* listing page complete */}
       {/* <MockTest /> */}
       {/* <Footer /> */}
+      {/* <Timer /> */}
       <Questions />
     </div>
   );
