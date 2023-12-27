@@ -4,7 +4,7 @@ import SearchBox from "../SearchBox";
 
 export const Test = () => {
   const arr = [
-    { subject: "HP joa it", validity: "11 Months", totalTest: "8" },
+    { subject: "HP JOA IT", validity: "11 Months", totalTest: "8" },
     { subject: "HP Cooprative Bank", validity: "1 Months", totalTest: "13" },
     { subject: "HP Allied Services", validity: "3 Months", totalTest: "15" },
     { subject: "HP Constable 2020", validity: "5 Months", totalTest: "10" },
@@ -28,6 +28,7 @@ export const Test = () => {
       {arr?.map(({ subject, validity, totalTest }, i) => {
         return (
           <Tile
+          key={subject}
             subject={subject}
             validity={validity}
             totalTest={totalTest}

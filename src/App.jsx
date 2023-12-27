@@ -3,13 +3,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { Footer } from "./components/footer/Footer";
-import { Test } from "./components/test/Test";
+import { Listing } from "./pages/Listing";
+import { Home } from "./pages/Home";
+import { MockTest } from "./pages/MockTest";
 
 function App() {
   return (
     <div className="App">
-      <Test />
-      <Footer />
+      {/* <Test />  */}
+      {/* <Home /> */}
+      {/* <Listing /> */}
+      {/* //* listing page complete */}
+      <MockTest />
+      {/* <Footer /> */}
     </div>
   );
 }
