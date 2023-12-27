@@ -6,6 +6,7 @@ import { Footer } from "./components/footer/Footer";
 import { Listing } from "./pages/Listing";
 import { Home } from "./pages/Home";
 import { MockTest } from "./pages/MockTest";
+import { Questions } from "./pages/Questions";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
       {/* <Home /> */}
       {/* <Listing /> */}
       {/* //* listing page complete */}
-      <MockTest />
+      {/* <MockTest /> */}
       {/* <Footer /> */}
+      <Questions />
     </div>
   );
 }
