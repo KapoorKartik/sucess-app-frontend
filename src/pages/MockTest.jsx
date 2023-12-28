@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 export const MockTest = () => {
   return (
     <>
@@ -42,9 +43,11 @@ export const MockTest = () => {
           </li>
         </ul>
       </div>
-      <div className="d-flex mb-3 ms-3 me-3 navbar fixed-bottom" >
+      <div className="d-flex bottom-container ms-3 me-3 navbar fixed-bottom" >
         <button className="btn btn-primary flex-grow-1" type="button" >
+          <Link to="/questions" className="text-decoration-none text-light">
           Start
+          </Link>
         </button>
       </div>
     </>

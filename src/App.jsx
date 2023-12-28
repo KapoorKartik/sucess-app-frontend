@@ -7,19 +7,20 @@ import { Listing } from "./pages/Listing";
 import { Home } from "./pages/Home";
 import { MockTest } from "./pages/MockTest";
 import { Questions } from "./pages/Questions";
-import Timer from "./pages/Timer";
+import Timer from "./components/Timer";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      {/* <Test />  */}
-      {/* <Home /> */}
-      {/* <Listing /> */}
-      {/* //* listing page complete */}
-      {/* <MockTest /> */}
-      {/* <Footer /> */}
-      {/* <Timer /> */}
-      <Questions />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/mocktest" element={<MockTest />} />
+        <Route path="/questions" element={<Questions />} />
+        <Route path="/listing" element={<Listing />} />
+        <Route path='*' element={<h1>404 Page Not Found</h1>}></Route>
+      </Routes>
+        <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Timer from "../components/Timer";
 
 export const Questions = () => {
   const [time,setTimer] = useState();
@@ -11,7 +12,7 @@ export const Questions = () => {
       </nav>
       <div className="shadow p-2 mb-2 mt-1 mx-2 bg-body rounded text-start d-flex justify-content-between">
         <div>1 of 70</div>
-        <div>Timer 00:00:00</div>
+        <div>Timer <Timer timeInSec={50} /></div>
         <div>+1 -0.25</div>
       </div>
     </>
