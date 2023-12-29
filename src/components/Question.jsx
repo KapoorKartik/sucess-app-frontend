@@ -1,7 +1,10 @@
 import React from 'react'
 
-export const Question = () => {
+export const Question = ({questionObj}) => {
+    // console.log('questionObj:', questionObj)
+    const q = questionObj?.question;
+    const options = questionObj?.options;
   return (
-    <div>Question</div>
+    <div>Question : {q}</div>
   )
 }

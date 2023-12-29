@@ -6,6 +6,7 @@ import { Question } from "../components/Question";
 export const Questions = () => {
   const { mockId } = useParams();
   const [qArr , setQarr] = useState([]);
+  const [currentQ , setCurrentQ] = useState(1);
   // console.log("mockID:", mockId);
 
   const getQuestionsByMockId = (mockId) => {
@@ -27,7 +28,6 @@ export const Questions = () => {
       setQarr(arrOne);
     }
   };
-
   useEffect(() => getQuestionsByMockId(mockId), []);
   return (
     <>
@@ -41,7 +41,8 @@ export const Questions = () => {
         </div>
         <div>+1 -0.25</div>
       </div>
-      <Question />
+      <Question questionObj={qArr[1]}/>
+      <button type="button"></button>
     </>
   );
 };
