@@ -4,18 +4,54 @@ import SearchBox from "../components/SearchBox";
 
 export const Listing = () => {
   const arr = [
-    { subject: "HP JOA IT", validity: "11 Months", totalTest: "8" },
-    { subject: "HP Cooprative Bank", validity: "1 Months", totalTest: "13" },
-    { subject: "HP Allied Services", validity: "3 Months", totalTest: "15" },
-    { subject: "HP Constable 2020", validity: "5 Months", totalTest: "10" },
+    {
+      subject: "HP JOA IT",
+      validity: "11 Months",
+      totalTest: "8",
+      testCode: "T1",
+    },
+    {
+      subject: "HP Cooprative Bank",
+      validity: "1 Months",
+      totalTest: "13",
+      testCode: "T2",
+    },
+    {
+      subject: "HP Allied Services",
+      validity: "3 Months",
+      totalTest: "15",
+      testCode: "T3",
+    },
+    {
+      subject: "HP Constable 2020",
+      validity: "5 Months",
+      totalTest: "10",
+      testCode: "T1",
+    },
     {
       subject: "HP Police Constable 2020",
       validity: "6 Months",
       totalTest: "12",
+      testCode: "T1",
     },
-    { subject: "HP TET (Medical)", validity: "2 Months", totalTest: "6" },
-    { subject: "HP TET (Non-Medical)", validity: "5 Months", totalTest: "4" },
-    { subject: "HP TET (Arts)", validity: "2 Months", totalTest: "9" },
+    {
+      subject: "HP TET (Medical)",
+      validity: "2 Months",
+      totalTest: "6",
+      testCode: "T1",
+    },
+    {
+      subject: "HP TET (Non-Medical)",
+      validity: "5 Months",
+      totalTest: "4",
+      testCode: "T1",
+    },
+    {
+      subject: "HP TET (Arts)",
+      validity: "2 Months",
+      totalTest: "9",
+      testCode: "T1",
+    },
   ];
   return (
     <>
@@ -31,13 +67,14 @@ export const Listing = () => {
       </div>
       <SearchBox />
 
-      {arr?.map(({ subject, validity, totalTest }, i) => {
+      {arr?.map(({ subject, validity, totalTest ,testCode }, i) => {
         return (
           <Tile
             key={subject}
             subject={subject}
             validity={validity}
             totalTest={totalTest}
+            testCode={testCode}
             isLast={arr.length - 1 === i} //* check if the current element is last element of the arr or not
           />
         );

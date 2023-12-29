@@ -43,12 +43,13 @@ export const MockTest = () => {
           </li>
         </ul>
       </div>
-      <div className="d-flex bottom-container ms-3 me-3 navbar fixed-bottom" >
-        <button className="btn btn-primary flex-grow-1" type="button" >
-          <Link to="/questions" className="text-decoration-none text-light">
+      <div className="d-flex bottom-container ms-3 me-3 navbar fixed-bottom">
+        <Link
+          to="/questions"
+          className="text-decoration-none text-light flex-grow-1 btn btn-primary"
+        >
           Start
-          </Link>
-        </button>
+        </Link>
       </div>
     </>
   );

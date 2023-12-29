@@ -55,7 +55,7 @@ const Timer = ({timeInSec = 60}) => {
   useEffect(() => {
    timeRef.current = setInterval(() => {
       setSeconds(prevSeconds => {
-        console.log('seconds:', prevSeconds);
+        // console.log('seconds:', prevSeconds);
         return prevSeconds - 1;
       });
     }, 1000);
@@ -65,7 +65,7 @@ const Timer = ({timeInSec = 60}) => {
   }, []); // Empty dependency array means the effect runs once on mount
 
   useEffect(() => {
-    console.log('seconds:', seconds == 0)
+    // console.log('seconds:', seconds === 0)
     if (seconds === 0) {
       // Handle timeRef.current completion, e.g., display a message or trigger another action
       clearInterval(timeRef.current);
