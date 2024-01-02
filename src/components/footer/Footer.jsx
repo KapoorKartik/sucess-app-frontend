@@ -1,6 +1,5 @@
 import React from "react";
 // import { div } from 'react-router-dom'
-import "./Footer.css";
 import { Link } from "react-router-dom";
 export const Footer = () => {
   let props = { selectHome: true };

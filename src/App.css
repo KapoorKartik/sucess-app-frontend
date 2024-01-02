@@ -16,3 +16,17 @@
 .liner-gradient {
   background: linear-gradient(to right,#0e43ca, #9990e1);
 }
+
+.bottom-menu{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 65px;
+  background-color: white;
+}
+
+.menu-link{
+  text-decoration: none;
+  color:#333;
+  font-size: small;
+}

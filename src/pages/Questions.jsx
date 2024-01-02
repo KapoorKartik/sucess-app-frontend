@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import Timer from "../components/Timer";
 import { useLocation, useParams } from "react-router-dom";
 import { Question } from "../components/Question";
-
+import { ReactComponent as AppI } from "../icons/app_icon.svg";
 export const Questions = () => {
   const { mockId } = useParams();
   const [qArr, setQarr] = useState([]);
   const [ansArr, setAnsArr] = useState({});
+  const [review, setReview] = useState({});
   const [currentQ, setCurrentQ] = useState(0);
+  let key = "q" + currentQ;
+
   // console.log("mockID:", mockId);
 
-  console.log("ansArr:", ansArr);
+  console.log("review:", review);
   const getQuestionsByMockId = (mockId) => {
     let questionsArray = [
       {
@@ -19,7 +22,12 @@ export const Questions = () => {
       },
       {
         question: "Who wrote 'Romeo and Juliet'?",
-        options: ["William Shakespeare", "Jane Austen", "Charles Dickens", "Mark Twain"],
+        options: [
+          "William Shakespeare",
+          "Jane Austen",
+          "Charles Dickens",
+          "Mark Twain",
+        ],
       },
       {
         question: "What is the largest planet in our solar system?",
@@ -35,7 +43,12 @@ export const Questions = () => {
       },
       {
         question: "Who painted the Mona Lisa?",
-        options: ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"],
+        options: [
+          "Leonardo da Vinci",
+          "Vincent van Gogh",
+          "Pablo Picasso",
+          "Claude Monet",
+        ],
       },
       {
         question: "What is the currency of Japan?",
@@ -63,7 +76,12 @@ export const Questions = () => {
       },
       {
         question: "Who is the author of 'To Kill a Mockingbird'?",
-        options: ["Harper Lee", "J.K. Rowling", "George Orwell", "Ernest Hemingway"],
+        options: [
+          "Harper Lee",
+          "J.K. Rowling",
+          "George Orwell",
+          "Ernest Hemingway",
+        ],
       },
       {
         question: "In which year did the Berlin Wall fall?",
@@ -75,11 +93,21 @@ export const Questions = () => {
       },
       {
         question: "Who discovered penicillin?",
-        options: ["Alexander Fleming", "Marie Curie", "Louis Pasteur", "Joseph Lister"],
+        options: [
+          "Alexander Fleming",
+          "Marie Curie",
+          "Louis Pasteur",
+          "Joseph Lister",
+        ],
       },
       {
         question: "What is the world's largest ocean?",
-        options: ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean"],
+        options: [
+          "Pacific Ocean",
+          "Atlantic Ocean",
+          "Indian Ocean",
+          "Arctic Ocean",
+        ],
       },
       {
         question: "Which country is known as the 'Land of the Rising Sun'?",
@@ -87,14 +115,24 @@ export const Questions = () => {
       },
       {
         question: "Who invented the telephone?",
-        options: ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Guglielmo Marconi"],
+        options: [
+          "Alexander Graham Bell",
+          "Thomas Edison",
+          "Nikola Tesla",
+          "Guglielmo Marconi",
+        ],
       },
       {
         question: "What is the speed of light?",
-        options: ["299,792 kilometers per second", "150,000 kilometers per second", "200,000 kilometers per second", "250,000 kilometers per second"],
+        options: [
+          "299,792 kilometers per second",
+          "150,000 kilometers per second",
+          "200,000 kilometers per second",
+          "250,000 kilometers per second",
+        ],
       },
     ];
-    
+
     if (mockId === "m1") {
       setQarr(questionsArray);
     }
@@ -120,11 +158,23 @@ export const Questions = () => {
   handleQuestionChange(3)
   no need to change currentQ
 */
+
+  const handleCurrentQuestion = (val) => {
+    setCurrentQ(val);
+  };
+  const handleClearResponse = () => {
+    setAnsArr({ ...ansArr, [key]: "" });
+  };
+
+  const handleReview = () => {
+    setReview({ ...review, [key]: !review[key] });
+  };
   return (
     <>
       <nav className="navbar navbar-light bg-primary liner-gradient mb-2 mx-0">
         <div className="container-fluid text-white">HP JOA IT</div>
       </nav>
+      {/* <div>{review[key] ? "Marked for review" : null}</div> */}
       <div className="p-2 mb-2 mt-1 mx-2 bg-body rounded text-start d-flex justify-content-between">
         <div>
           {currentQ + 1} of {qArr.length}
@@ -139,23 +189,38 @@ export const Questions = () => {
         currentQ={currentQ}
         ansArr={ansArr}
       />
-
-      <div class="d-flex justify-content-between mt-2 mx-2">
-        <button
+      <div class="d-flex justify-content-start mt-3 mx-2">
+        <div
+          onClick={handleClearResponse}
+          class="border border-primary text-primary rounded-pill p-2 me-2"
+          style={{fontSize: "12px"}}
+        >
+          Clear Response
+        </div>
+        <div
+          onClick={handleReview}
+          class="border border-primary text-primary rounded-pill p-2"
+          style={{fontSize: "12px"}}
+        >
+          {review[key] ? "Marked for review" : "Unmarked for review"}
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mb-3 mx-2 fixed-bottom">
+        <div
           onClick={() => handleQuestionChange(-1)}
-          type="button"
-          class="btn btn-primary"
+          class="text-primary"
           disabled={currentQ === 0}
         >
-          Previous
-        </button>
-        <button
-          onClick={() => handleQuestionChange(1)}
-          type="button"
-          class="btn btn-primary"
-        >
-          {currentQ + 1 === qArr.length ? "Submit" : "Save and Next"}
-        </button>
+          {"< Previous"}
+        </div>
+        <div>|</div>
+        <div onClick={() => handleCurrentQuestion(10)} class="">
+          <AppI />
+        </div>
+        <div>|</div>
+        <div onClick={() => handleQuestionChange(1)} class="text-primary">
+          {currentQ + 1 === qArr.length ? "Submit" : "Next >"}
+        </div>
       </div>
       {/* {ansArr.map((ans) =>  <div>{ans}</div>)} */}
     </>

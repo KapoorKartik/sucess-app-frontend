@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 
-export const Question = ({ questionObj ,setAnsArr , ansArr, currentQ}) => {
+export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
   // console.log('questionObj:', questionObj)
   const q = questionObj?.question;
   const options = questionObj?.options;
+  let key = "q" + currentQ;
   const handleClick = (val) => {
     console.log("handleSubmit", val);
-    setAnsArr({...ansArr,[q]: val});
+    setAnsArr({ ...ansArr, [key]: val });
   };
   const type = "radio";
   return (
-    <>
-      <div className="text-start ms-2 pb-2">Question : {q}</div>
+    <div className="shadow p-3 mx-2 rounded">
+      <div className="text-start ms-2 pb-2 border-info border-bottom">
+        Question : {q}
+      </div>
       {options?.map((option, index) => {
         return (
           <div
             key={option}
             className={
-              index === 0
-                ? "form-check mx-3  border-primary d-flex"
-                : "form-check mx-3 border-top  border-primary d-flex"
+              index === 0 ? "form-check mx-3 py-2 d-flex border-0 border-info" : "border-0 border-info form-check mx-3 d-flex py-2"
             }
           >
             <input
@@ -28,8 +29,8 @@ export const Question = ({ questionObj ,setAnsArr , ansArr, currentQ}) => {
               name="exampleRadios"
               id={option}
               value={option}
-              onChange={(e)=> handleClick(e.target.value)}
-              checked={ansArr[q] === option}
+              onChange={(e) => handleClick(e.target.value)}
+              checked={ansArr[key] === option}
             />
             <label
               className="form-check-label ps-2 flex-grow-1 text-start"
@@ -40,6 +41,6 @@ export const Question = ({ questionObj ,setAnsArr , ansArr, currentQ}) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };

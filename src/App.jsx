@@ -20,7 +20,7 @@ function App() {
         <Route path="/listing" element={<Listing />} />
         <Route path='*' element={<h1>404 Page Not Found</h1>}></Route>
       </Routes>
-        <Footer />
+        {/* <Footer /> */}
     </div>
   );
 }
