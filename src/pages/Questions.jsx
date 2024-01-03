@@ -3,17 +3,23 @@ import Timer from "../components/Timer";
 import { useLocation, useParams } from "react-router-dom";
 import { Question } from "../components/Question";
 import { ReactComponent as AppI } from "../icons/app_icon.svg";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import  Modal  from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 export const Questions = () => {
   const { mockId } = useParams();
   const [qArr, setQarr] = useState([]);
   const [ansArr, setAnsArr] = useState({});
   const [review, setReview] = useState({});
   const [currentQ, setCurrentQ] = useState(0);
+  const [show, setShow] = useState(true);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   let key = "q" + currentQ;
 
   // console.log("mockID:", mockId);
 
-  console.log("review:", review);
   const getQuestionsByMockId = (mockId) => {
     let questionsArray = [
       {
@@ -193,14 +199,14 @@ export const Questions = () => {
         <div
           onClick={handleClearResponse}
           class="border border-primary text-primary rounded-pill p-2 me-2"
-          style={{fontSize: "12px"}}
+          style={{ fontSize: "12px" }}
         >
           Clear Response
         </div>
         <div
           onClick={handleReview}
           class="border border-primary text-primary rounded-pill p-2"
-          style={{fontSize: "12px"}}
+          style={{ fontSize: "12px" }}
         >
           {review[key] ? "Marked for review" : "Unmarked for review"}
         </div>
@@ -214,7 +220,7 @@ export const Questions = () => {
           {"< Previous"}
         </div>
         <div>|</div>
-        <div onClick={() => handleCurrentQuestion(10)} class="">
+        <div onClick={handleShow} class="">
           <AppI />
         </div>
         <div>|</div>
@@ -223,6 +229,47 @@ export const Questions = () => {
         </div>
       </div>
       {/* {ansArr.map((ans) =>  <div>{ans}</div>)} */}
+
+      {/* <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button> */}
+
+      {/* <Modal show={show} onHide={handleClose} placement="bottom">
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
+
+      <Offcanvas  show={show} onHide={handleClose} placement="bottom">
+        {/* <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header> */}
+        <div className="d-flex p-1 justify-content-around">
+          <div>Answred</div>
+          <div>Unanswer</div>
+        </div>
+        <div className="d-flex justify-content-around">
+          <div>Marked</div>
+          <div>Active</div>
+        </div>
+        <Offcanvas.Body>
+          <div className="">
+          {qArr.map((ele, i) =>{
+            return (<div className="btn btn-primary mx-1">{i+1}</div>
+            )
+          })}
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 };
