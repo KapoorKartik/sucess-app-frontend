@@ -3,14 +3,15 @@ import Timer from "../components/Timer";
 import { useLocation, useParams } from "react-router-dom";
 import { Question } from "../components/Question";
 import { ReactComponent as AppI } from "../icons/app_icon.svg";
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import  Modal  from "react-bootstrap/Modal";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 export const Questions = () => {
   const { mockId } = useParams();
   const [qArr, setQarr] = useState([]);
   const [ansArr, setAnsArr] = useState({});
-  const [review, setReview] = useState({});
+  const [review, setReview] = useState({ q0: false });
+  console.log("review:", review);
   const [currentQ, setCurrentQ] = useState(0);
   const [show, setShow] = useState(true);
 
@@ -137,6 +138,37 @@ export const Questions = () => {
           "250,000 kilometers per second",
         ],
       },
+      {
+        question: "What is the world's largest ocean?",
+        options: [
+          "Pacific Ocean",
+          "Atlantic Ocean",
+          "Indian Ocean",
+          "Arctic Ocean",
+        ],
+      },
+      {
+        question: "Which country is known as the 'Land of the Rising Sun'?",
+        options: ["Japan", "China", "South Korea", "Vietnam"],
+      },
+      {
+        question: "Who invented the telephone?",
+        options: [
+          "Alexander Graham Bell",
+          "Thomas Edison",
+          "Nikola Tesla",
+          "Guglielmo Marconi",
+        ],
+      },
+      {
+        question: "What is the speed of light?",
+        options: [
+          "299,792 kilometers per second",
+          "150,000 kilometers per second",
+          "200,000 kilometers per second",
+          "250,000 kilometers per second",
+        ],
+      },
     ];
 
     if (mockId === "m1") {
@@ -166,7 +198,10 @@ export const Questions = () => {
 */
 
   const handleCurrentQuestion = (val) => {
-    setCurrentQ(val);
+    if (val <= qArr.length) {
+      setCurrentQ(val);
+      setShow(false);
+    }
   };
   const handleClearResponse = () => {
     setAnsArr({ ...ansArr, [key]: "" });
@@ -175,6 +210,22 @@ export const Questions = () => {
   const handleReview = () => {
     setReview({ ...review, [key]: !review[key] });
   };
+
+  const handleSubmit = () => {
+    console.log("submit is clicked");
+  };
+  console.log('ansArr:', ansArr)
+  const conditionForCss = (val) => {
+    if (val === currentQ) {
+      console.log('currentQ:', currentQ)
+      return "border border-info text-center bg-secondary"
+    }else if (review["q"+val]) {
+      return "border border-danger text-center bg-info"
+    }else {
+      return  "border border-info text-center "
+    }
+
+  }
   return (
     <>
       <nav className="navbar navbar-light bg-primary liner-gradient mb-2 mx-0">
@@ -195,36 +246,43 @@ export const Questions = () => {
         currentQ={currentQ}
         ansArr={ansArr}
       />
-      <div class="d-flex justify-content-start mt-3 mx-2">
+      <div className="d-flex justify-content-start mt-3 mx-2">
         <div
           onClick={handleClearResponse}
-          class="border border-primary text-primary rounded-pill p-2 me-2"
+          className="border border-primary text-primary rounded-pill p-2 me-2"
           style={{ fontSize: "12px" }}
         >
           Clear Response
         </div>
         <div
           onClick={handleReview}
-          class="border border-primary text-primary rounded-pill p-2"
+          className="border border-primary text-primary rounded-pill p-2"
           style={{ fontSize: "12px" }}
         >
-          {review[key] ? "Marked for review" : "Unmarked for review"}
+          {review[key] === true ? "Unmarked for review" : "Marked for review"}
         </div>
       </div>
-      <div class="d-flex justify-content-between mb-3 mx-2 fixed-bottom">
+      <div className="d-flex justify-content-between mb-3 mx-2 fixed-bottom">
         <div
           onClick={() => handleQuestionChange(-1)}
-          class="text-primary"
+          className="text-primary"
           disabled={currentQ === 0}
         >
           {"< Previous"}
         </div>
         <div>|</div>
-        <div onClick={handleShow} class="">
+        <div onClick={handleShow} className="">
           <AppI />
         </div>
         <div>|</div>
-        <div onClick={() => handleQuestionChange(1)} class="text-primary">
+        <div
+          onClick={() =>
+            currentQ + 1 === qArr.length
+              ? handleSubmit()
+              : handleQuestionChange(1)
+          }
+          className="text-primary"
+        >
           {currentQ + 1 === qArr.length ? "Submit" : "Next >"}
         </div>
       </div>
@@ -249,7 +307,7 @@ export const Questions = () => {
         </Modal.Footer>
       </Modal> */}
 
-      <Offcanvas  show={show} onHide={handleClose} placement="bottom">
+      <Offcanvas show={show} onHide={handleClose} placement="bottom">
         {/* <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header> */}
@@ -262,14 +320,65 @@ export const Questions = () => {
           <div>Active</div>
         </div>
         <Offcanvas.Body>
-          <div className="">
-          {qArr.map((ele, i) =>{
-            return (<div className="btn btn-primary mx-1">{i+1}</div>
-            )
+          
+          {/*
+        <div className="row">
+               <div className={review["q"+0] === true ? "col border border-info bg-info" : "col border border-danger bg-danger"} onClick={()=>handleCurrentQuestion(0)}>{0}</div>
+              </div> */}
+          {/* {qArr.map((ele, i) =>{
+            if ((i)%5 === 0){
+            return  <div className="row">
+              <div className={review["q"+i] === true ? "col border border-info bg-info" : "col border border-danger"} onClick={()=>handleCurrentQuestion(i)}>{i}</div>
+              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+1)}>{i+1}</div>
+              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+2)}>{i+2}</div>
+              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+3)}>{i+3}</div>
+              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+4)}>{i+4}</div> 
+            </div>
+            }
           })}
+        */}
+       
+          {/* <div className="row">
+            <div className="col border border-danger">1</div>
+            <div className="col  border border-danger">2</div>
+            <div className="col  border border-danger">3</div>
+            <div className="col  border border-danger">4</div>
+            <div className="col  border border-danger">5</div>
           </div>
+          <div className="row">
+            <div className="col  border border-danger bg-info">6</div>
+            <div className="col  border border-danger" onClick={()=>handleCurrentQuestion(6)}>7</div>
+            <div className="col  border border-danger">8</div>
+            <div className="col  border border-danger">9</div>
+            <div className="col  border border-danger">10</div>
+          </div>
+          <div className="row">
+            <div className="col  border border-danger">11</div>
+            <div className="col  border border-danger">12</div>
+            <div className="col  border border-danger">13</div>
+            <div className="col  border border-danger">14</div>
+            <div className="col  border border-danger">15</div>
+          </div>
+          <div className="row">
+            <div className="col  border border-danger" onClick={()=>handleCurrentQuestion(15)}>16</div>
+            <div className="col  border border-danger">17</div>
+            <div className="col  border border-danger">18</div>
+            <div className="col  border border-danger">19</div>
+            <div className="col  border border-danger">20</div>
+          </div> */}
+          <ul style={{listStyleType : "none", margin : "0", padding : "0"}}>
+           {qArr.map((q, i)=>{
+            return <li style={{width : "20%", display : "inline-block"}} className={conditionForCss(i)} onClick={()=>handleCurrentQuestion(i)}>{ansArr["q"+i] ? "* " : "# "}{i+1}</li>
+           })}
+           </ul>
         </Offcanvas.Body>
       </Offcanvas>
     </>
   );
 };
+
+/* 
+  for(var i = 0; i < questions.length; i++){
+    if ()
+  }
+*/
