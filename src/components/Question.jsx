@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
   // console.log('questionObj:', questionObj)
@@ -10,8 +10,18 @@ export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
     setAnsArr({ ...ansArr, [key]: val });
   };
   const type = "radio";
+  let  isClick = false;
+  useEffect(() => {
+    // You can use an interval, a button click, or any other event to change the question
+    const interval = setInterval(() => {
+      isClick = true;
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentQ]);
+    isClick = true;
   return (
-    <div className="shadow p-3 mx-2 rounded">
+    <div className={`shadow p-3 mx-2 rounded ${isClick ? 'custome-k' : ''}`}>
       <div className="text-start ms-2 pb-2 border-info border-bottom">
         Question : {q}
       </div>

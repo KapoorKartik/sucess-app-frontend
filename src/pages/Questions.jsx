@@ -10,12 +10,14 @@ export const Questions = () => {
   const { mockId } = useParams();
   const [qArr, setQarr] = useState([]);
   const [ansArr, setAnsArr] = useState({});
-  const [review, setReview] = useState({ q0: false });
-  console.log("review:", review);
+  const [review, setReview] = useState({});
   const [currentQ, setCurrentQ] = useState(0);
-  const [show, setShow] = useState(true);
-
+  const [show, setShow] = useState();
+  const [showModal, setShowModal] = useState();
+  const [timeInSec, setTimeInSec] = useState();
+  const [visited, setVisited] = useState({});
   const handleClose = () => setShow(false);
+  const handleCloseModal = () => setShowModal(false);
   const handleShow = () => setShow(true);
   let key = "q" + currentQ;
 
@@ -173,6 +175,8 @@ export const Questions = () => {
 
     if (mockId === "m1") {
       setQarr(questionsArray);
+      setTimeInSec(30);
+      // setVisited(qArr.length - 1 )
     }
   };
   useEffect(() => getQuestionsByMockId(mockId), []);
@@ -185,6 +189,9 @@ export const Questions = () => {
       }
     });
   };
+  useEffect(() => {
+    setVisited({ ...visited, key: true });
+  }, [currentQ]);
 
   /* 
   length = 3
@@ -214,18 +221,22 @@ export const Questions = () => {
   const handleSubmit = () => {
     console.log("submit is clicked");
   };
-  console.log('ansArr:', ansArr)
+  console.log("ansArr:", ansArr);
   const conditionForCss = (val) => {
     if (val === currentQ) {
-      console.log('currentQ:', currentQ)
-      return "border border-info text-center bg-secondary"
-    }else if (review["q"+val]) {
-      return "border border-danger text-center bg-info"
-    }else {
-      return  "border border-info text-center "
+      console.log("currentQ:", currentQ);
+      return "border border-info text-center bg-secondary  text-light";
+    } else if (review["q" + val]) {
+      return "border border-danger text-center bg-info";
+    } else {
+      return "border border-info text-center ";
     }
+  };
 
-  }
+  const timerOver = () => {
+    // alert("Time is Over");
+    setShowModal(true);
+  };
   return (
     <>
       <nav className="navbar navbar-light bg-primary liner-gradient mb-2 mx-0">
@@ -236,7 +247,14 @@ export const Questions = () => {
         <div>
           {currentQ + 1} of {qArr.length}
         </div>
-        <div>{/* Timer <Timer timeInSec={50} /> */}</div>
+        <div>
+          Time{" "}
+          {timeInSec ? (
+            <Timer timeInSec={timeInSec} timerOver={timerOver} />
+          ) : (
+            "...loading"
+          )}
+        </div>
         <div>+1 -0.25</div>
       </div>
 
@@ -262,6 +280,79 @@ export const Questions = () => {
           {review[key] === true ? "Unmarked for review" : "Marked for review"}
         </div>
       </div>
+
+      {/* {ansArr.map((ans) =>  <div>{ans}</div>)} */}
+
+      {/* <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button> */}
+
+      <Modal
+        show={showModal}
+        onHide={handleCloseModal}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="d-flex p-1 justify-content-between text-info">
+            <div>Answered</div>
+            <div>{Object.keys(ansArr).length}</div>
+          </div>
+          <div className="d-flex p-1 justify-content-between text-danger">
+            <div>Unanswered</div>
+            <div>{qArr.length - Object.keys(ansArr).length}</div>
+          </div>
+          <div className="d-flex p-1 justify-content-between text-warning">
+            <div>Mark For Review</div>
+            <div>{Object.keys(review).length}</div>
+          </div>
+          <div className="d-flex p-1 justify-content-between">
+            <div>Not Visited</div>
+            <div>{qArr?.length - Object.keys(visited)?.length}</div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          {/* <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button> */}
+          <Button variant="primary" onClick={handleCloseModal}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Offcanvas show={show} onHide={handleClose} placement="bottom">
+        {/* <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header> */}
+        <div className="d-flex p-1 justify-content-around">
+          <div>* Answred</div>
+          <div># Unanswer</div>
+        </div>
+        <div className="d-flex justify-content-around">
+          <div className="bg-info">Marked</div>
+          <div className="bg-secondary">Active</div>
+        </div>
+        <Offcanvas.Body>
+          <ul style={{ listStyleType: "none", margin: "0", padding: "0" }}>
+            {qArr.map((q, i) => {
+              return (
+                <li
+                  style={{ width: "20%", display: "inline-block" }}
+                  className={conditionForCss(i)}
+                  onClick={() => handleCurrentQuestion(i)}
+                >
+                  {ansArr["q" + i] ? "* " : "# "}
+                  {i + 1}
+                </li>
+              );
+            })}
+          </ul>
+        </Offcanvas.Body>
+      </Offcanvas>
       <div className="d-flex justify-content-between mb-3 mx-2 fixed-bottom">
         <div
           onClick={() => handleQuestionChange(-1)}
@@ -278,7 +369,7 @@ export const Questions = () => {
         <div
           onClick={() =>
             currentQ + 1 === qArr.length
-              ? handleSubmit()
+              ? timerOver()
               : handleQuestionChange(1)
           }
           className="text-primary"
@@ -286,93 +377,6 @@ export const Questions = () => {
           {currentQ + 1 === qArr.length ? "Submit" : "Next >"}
         </div>
       </div>
-      {/* {ansArr.map((ans) =>  <div>{ans}</div>)} */}
-
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
-
-      {/* <Modal show={show} onHide={handleClose} placement="bottom">
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
-
-      <Offcanvas show={show} onHide={handleClose} placement="bottom">
-        {/* <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header> */}
-        <div className="d-flex p-1 justify-content-around">
-          <div>Answred</div>
-          <div>Unanswer</div>
-        </div>
-        <div className="d-flex justify-content-around">
-          <div>Marked</div>
-          <div>Active</div>
-        </div>
-        <Offcanvas.Body>
-          
-          {/*
-        <div className="row">
-               <div className={review["q"+0] === true ? "col border border-info bg-info" : "col border border-danger bg-danger"} onClick={()=>handleCurrentQuestion(0)}>{0}</div>
-              </div> */}
-          {/* {qArr.map((ele, i) =>{
-            if ((i)%5 === 0){
-            return  <div className="row">
-              <div className={review["q"+i] === true ? "col border border-info bg-info" : "col border border-danger"} onClick={()=>handleCurrentQuestion(i)}>{i}</div>
-              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+1)}>{i+1}</div>
-              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+2)}>{i+2}</div>
-              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+3)}>{i+3}</div>
-              <div className="col border border-danger" onClick={()=>handleCurrentQuestion(i+4)}>{i+4}</div> 
-            </div>
-            }
-          })}
-        */}
-       
-          {/* <div className="row">
-            <div className="col border border-danger">1</div>
-            <div className="col  border border-danger">2</div>
-            <div className="col  border border-danger">3</div>
-            <div className="col  border border-danger">4</div>
-            <div className="col  border border-danger">5</div>
-          </div>
-          <div className="row">
-            <div className="col  border border-danger bg-info">6</div>
-            <div className="col  border border-danger" onClick={()=>handleCurrentQuestion(6)}>7</div>
-            <div className="col  border border-danger">8</div>
-            <div className="col  border border-danger">9</div>
-            <div className="col  border border-danger">10</div>
-          </div>
-          <div className="row">
-            <div className="col  border border-danger">11</div>
-            <div className="col  border border-danger">12</div>
-            <div className="col  border border-danger">13</div>
-            <div className="col  border border-danger">14</div>
-            <div className="col  border border-danger">15</div>
-          </div>
-          <div className="row">
-            <div className="col  border border-danger" onClick={()=>handleCurrentQuestion(15)}>16</div>
-            <div className="col  border border-danger">17</div>
-            <div className="col  border border-danger">18</div>
-            <div className="col  border border-danger">19</div>
-            <div className="col  border border-danger">20</div>
-          </div> */}
-          <ul style={{listStyleType : "none", margin : "0", padding : "0"}}>
-           {qArr.map((q, i)=>{
-            return <li style={{width : "20%", display : "inline-block"}} className={conditionForCss(i)} onClick={()=>handleCurrentQuestion(i)}>{ansArr["q"+i] ? "* " : "# "}{i+1}</li>
-           })}
-           </ul>
-        </Offcanvas.Body>
-      </Offcanvas>
     </>
   );
 };

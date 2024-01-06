@@ -31,3 +31,19 @@
   font-size: small;
 }
 
+.custome-k {
+  /* color: #0e43ca ; */
+  animation: fadet 2s ;
+}
+
+@keyframes fadet {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

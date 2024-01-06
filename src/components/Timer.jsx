@@ -48,7 +48,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-const Timer = ({timeInSec = 60}) => {
+const Timer = ({timeInSec, timerOver}) => {
   const [seconds, setSeconds] = useState(timeInSec); // Set the initial time in seconds
   const timeRef = useRef(null);
 
@@ -69,6 +69,7 @@ const Timer = ({timeInSec = 60}) => {
     if (seconds === 0) {
       // Handle timeRef.current completion, e.g., display a message or trigger another action
       clearInterval(timeRef.current);
+      timerOver();
     }
   }, [seconds]);
 
