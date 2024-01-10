@@ -9,7 +9,7 @@ export const Footer = () => {
         <hr />
 
         <div className="col-3">
-          <div to="/" className="text-decoration-none">
+          <Link to="/" className="text-decoration-none">
             <img
               width="25"
               height="25"
@@ -18,7 +18,7 @@ export const Footer = () => {
             />
             <br />
             Home
-          </div>
+          </Link>
         </div>
 
         <div className="col-3 text-decoration-none">

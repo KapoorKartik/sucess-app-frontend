@@ -1,6 +1,7 @@
 import React from "react";
 import { Tile } from "../components/test/Tile";
 import SearchBox from "../components/SearchBox";
+import { Link } from "react-router-dom";
 
 export const Listing = () => {
   const arr = [
@@ -56,6 +57,7 @@ export const Listing = () => {
   return (
     <>
       <div className="sticky-top  text-start d-flex bg-light py-2">
+        <Link to="/">
         <img
           className="ms-2"
           width="28"
@@ -63,6 +65,7 @@ export const Listing = () => {
           src="https://img.icons8.com/small/28/0d6efd/long-arrow-left.png"
           alt="l"
         />
+        </Link>
         <div className="ms-2 fw-bold text-primary">Test Series</div>
       </div>
       <SearchBox />

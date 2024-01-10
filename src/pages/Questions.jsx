@@ -13,7 +13,7 @@ export const Questions = () => {
   const [review, setReview] = useState({});
   const [currentQ, setCurrentQ] = useState(0);
   const [show, setShow] = useState();
-  const [showModal, setShowModal] = useState();
+  const [showModal, setShowModal] = useState(false);
   const [timeInSec, setTimeInSec] = useState();
   const [visited, setVisited] = useState({});
   const handleClose = () => setShow(false);
@@ -175,7 +175,7 @@ export const Questions = () => {
 
     if (mockId === "m1") {
       setQarr(questionsArray);
-      setTimeInSec(30);
+      setTimeInSec(10);
       // setVisited(qArr.length - 1 )
     }
   };
@@ -190,7 +190,7 @@ export const Questions = () => {
     });
   };
   useEffect(() => {
-    setVisited({ ...visited, key: true });
+    setVisited({ ...visited, [key]: true });
   }, [currentQ]);
 
   /* 
@@ -211,7 +211,12 @@ export const Questions = () => {
     }
   };
   const handleClearResponse = () => {
-    setAnsArr({ ...ansArr, [key]: "" });
+    // Create a copy of the current state
+    const updatedAnsArr = { ...ansArr };
+    // Remove the specified key
+    delete updatedAnsArr[key];
+    // Update the state with the modified object
+    setAnsArr(updatedAnsArr);
   };
 
   const handleReview = () => {
@@ -237,6 +242,10 @@ export const Questions = () => {
     // alert("Time is Over");
     setShowModal(true);
   };
+  console.log('qArr?.length - Object.keys(visited)?.length:', qArr?.length - Object.keys(visited)?.length)
+  console.log('visited:', visited)
+  console.log('qArr?.length:', qArr?.length)
+
   return (
     <>
       <nav className="navbar navbar-light bg-primary liner-gradient mb-2 mx-0">
