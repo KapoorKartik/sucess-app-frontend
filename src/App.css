@@ -31,6 +31,10 @@
   font-size: small;
 }
 
+.no-box-shadow {
+  box-shadow: none !important;
+}
+
 .custome-k {
   /* color: #0e43ca ; */
   animation: fadet 2s ;

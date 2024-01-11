@@ -71,7 +71,7 @@ import Image from "react-bootstrap/Image";
 import { useEffect, useState } from "react";
 
 export const Home = () => {
-  let imageUrl = "https://placehold.co/500x300";
+  let imageUrl = "https://placehold.co/500x400";
   // let imageUrl = "https://plchldr.co/i/336x180?bg=71BA51";
   let imageAlt = "alt tag";
   let link = "/listing";
@@ -167,14 +167,15 @@ export const Home = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Form className="d-flex mx-2 py-1">
+      <Form className="d-flex m-2 border border-danger rounded">
         <Form.Control
           type="search"
           placeholder="Search"
-          className="me-2 mt-1"
+          className="me-2 mt-1 border border-danger border-0 no-box-shadow"
           aria-label="Search"
-        />
-        <Button variant="outline-success">Search</Button>
+/>
+        
+        <div className=" border-danger  d-flex align-items-center justify-content-center"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div>
       </Form>
       <div className="m-2 p-3 border border-1 border-danger">
         container for offers
