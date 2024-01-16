@@ -3,14 +3,10 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
 export const Tile = ({ subject, totalTest, validity, isLast, testCode }) => {
-  console.log("isLast:", isLast);
   return (
     <div
-      className={
-        isLast
-          ? "shadow p-3 mt-1 mx-3 bg-body rounded text-start bottom-container"
-          : "shadow p-3 mb-2 mt-1 mx-3 bg-body rounded text-start"
-      }
+      className={`shadow p-3 mt-1 mx-3 bg-body rounded text-start ${isLast ? 'bottom-container' : 'mb-2'}`}
+      //* extra bottom margin for last element
     >
       <Card.Body>
         <Button
@@ -18,7 +14,7 @@ export const Tile = ({ subject, totalTest, validity, isLast, testCode }) => {
           className="float-end fw-bold bg-btn-color"
           variant="outline-primary"
         >
-          <Link className="text-decoration-none" to={`/mockTest/${testCode}`}>Explore</Link>
+          <Link className="text-decoration-none" to={`/mockTestList/${testCode}`}>Explore</Link>
         </Button>
         <Card.Title className="fs-6">{subject}</Card.Title>
         <Card.Text>
