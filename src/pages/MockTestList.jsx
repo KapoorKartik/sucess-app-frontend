@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 export const MockTestList = () => {
   const {testCode} = useParams();
-  console.log('testCode:', testCode)
+  // console.log('testCode:', testCode)
   return (
     <div>MockTestList {testCode}</div>
   )
