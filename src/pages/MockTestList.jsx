@@ -14,24 +14,49 @@ export const MockTestList = () => {
   };
   return (
     <>
-      <Link className="mt-2" to="/listing">
-        <img
-          className="ms-2 mt-2"
-          width="28"
-          height="28"
-          src="https://img.icons8.com/small/28/long-arrow-left.png"
-          alt="backBtn"
-        />
-      </Link>
+      <div className="mx-3">
+        <Link className="mt-2" to="/listing">
+          <img
+            className="ms-2 mt-2"
+            width="28"
+            height="28"
+            src="https://img.icons8.com/small/28/long-arrow-left.png"
+            alt="backBtn"
+          />
+        </Link>
 
-      <div className="ms-2 fs-4 fw-bold mt-1">{obj?.subject}</div>
-      <div className="ms-2 fw-light text-muted">Validity: {obj?.validity}</div>
-      <div className="shadow p-2 mt-1 mx-3 bg-body rounded text-start mb-2 d-flex">
-        <div className="flex-grow-1 border">
-        <div>FLT #4</div>
-        <div className="text-muted" style={{fontSize : "11px"}}>Duration: 2hrs</div>
+        <div className="fs-4 fw-bold mt-1">{obj?.subject}</div>
+        <div className="fw-light text-muted">Validity: {obj?.validity}</div>
+        <div className="fw-bold mt-1 ">Free Demo Test</div>
+        <div className="shadow p-2 mt-1 mx-1 bg-body rounded text-start mb-2 d-flex">
+          <div className="flex-grow-1 border-0">
+            <div>Free Demo Test</div>
+            <div className="text-muted" style={{ fontSize: "11px" }}>
+              Duration: 2hrs
+            </div>
+          </div>
+          <img
+            src="https://img.icons8.com/small/25/long-arrow-right.png"
+            class="rounded-circle border-0 me-2"
+            alt="exploerBtn"
+          ></img>
         </div>
-        <img src="https://img.icons8.com/small/35/long-arrow-right.png" class="rounded-circle border" alt="exploerBtn"></img>
+
+        <div className="fw-bold mt-1 ">Test Schedule</div>
+        <div className="shadow p-2 mt-1 mx-1 bg-body rounded text-start mb-2 d-flex">
+          <div className="flex-grow-1 border-0">
+            <div>FLT #4</div>
+            <div className="text-muted" style={{ fontSize: "11px" }}>
+              Duration: 2hrs
+            </div>
+          </div>
+          <img
+            src="https://icons8.com/icon/83187/lock"
+            class="rounded-circle border-0 me-2"
+            alt="exploerBtn"
+          ></img>
+          <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/lock--v1.png" alt="lock--v1"/>
+        </div>
       </div>
     </>
   );
