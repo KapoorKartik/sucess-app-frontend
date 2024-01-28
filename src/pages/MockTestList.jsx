@@ -35,11 +35,13 @@ export const MockTestList = () => {
               Duration: 2hrs
             </div>
           </div>
+          <Link to='/mockTest/m1'>
           <img
             src="https://img.icons8.com/small/25/long-arrow-right.png"
             class="rounded-circle border-0 me-2"
             alt="exploerBtn"
           ></img>
+          </Link>
         </div>
 
         <div className="fw-bold mt-1 ">Test Schedule</div>
@@ -50,11 +52,6 @@ export const MockTestList = () => {
               Duration: 2hrs
             </div>
           </div>
-          <img
-            src="https://icons8.com/icon/83187/lock"
-            class="rounded-circle border-0 me-2"
-            alt="exploerBtn"
-          ></img>
           <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/lock--v1.png" alt="lock--v1"/>
         </div>
       </div>

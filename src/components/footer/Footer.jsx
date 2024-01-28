@@ -2,7 +2,7 @@ import React from "react";
 // import { div } from 'react-router-dom'
 import { Link } from "react-router-dom";
 export const Footer = () => {
-  let props = { selectHome: true };
+  // let props = { selectHome: true };
   return (
     <footer>
       <div className="row bottom-menu mx-1">

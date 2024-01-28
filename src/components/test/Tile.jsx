@@ -1,14 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 export const Tile = ({ subject, totalTest, validity, isLast, testCode }) => {
   const obj =  {subject, totalTest, validity, isLast, testCode} ;
-  // console.log('params:', params)
-  // const encParams = btoa(params);
-  // console.log('encParams:', encParams)
-  // const decParams = atob(encParams);
-  // console.log('decParams:', decParams)
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/mockTestList', { state: { obj } });

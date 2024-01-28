@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
   // console.log('questionObj:', questionObj)
@@ -6,10 +6,10 @@ export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
   const options = questionObj?.options;
   let key = "q" + currentQ;
   const handleClick = (val) => {
-    console.log("handleSubmit", val);
+    // console.log("handleSubmit", val);
     setAnsArr({ ...ansArr, [key]: val });
   };
-  const type = "radio";
+  // const type = "radio";
   let  isClick = false;
   useEffect(() => {
     // You can use an interval, a button click, or any other event to change the question

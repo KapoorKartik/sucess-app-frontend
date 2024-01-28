@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 export const MyChart = () => {
-  const [chartData, setChartData] = useState({
+  const [chartData] = useState({
     series: [{
       name: "No. of students",
       data: [100, 80, 90, 60, 49, 40, 25, 20, 9]

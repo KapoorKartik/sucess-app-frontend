@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Timer from "../components/Timer";
-import { useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Question } from "../components/Question";
 import { ReactComponent as AppI } from "../icons/app_icon.svg";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -16,8 +16,20 @@ export const Questions = () => {
   const [showModal, setShowModal] = useState(false);
   const [timeInSec, setTimeInSec] = useState();
   const [visited, setVisited] = useState({});
+  const [isTimeOver, setIsTimeOver] = useState(false);
+
+  const navigate = useNavigate();
+
   const handleClose = () => setShow(false);
-  const handleCloseModal = () => setShowModal(false);
+
+  const handleCloseModal = (flag) => {
+    if (flag === "submit") {
+      navigate("/");
+    } else if (flag === "close" && isTimeOver) {
+      navigate("/");
+    }
+    setShowModal(false);
+  };
   const handleShow = () => setShow(true);
   let key = "q" + currentQ;
 
@@ -175,7 +187,7 @@ export const Questions = () => {
 
     if (mockId === "m1") {
       setQarr(questionsArray);
-      setTimeInSec(60);
+      setTimeInSec(50);
       // setVisited(qArr.length - 1 )
     }
   };
@@ -223,13 +235,10 @@ export const Questions = () => {
     setReview({ ...review, [key]: !review[key] });
   };
 
-  const handleSubmit = () => {
-    console.log("submit is clicked");
-  };
-  console.log("ansArr:", ansArr);
+  // console.log("ansArr:", ansArr);
   const conditionForCss = (val) => {
     if (val === currentQ) {
-      console.log("currentQ:", currentQ);
+      // console.log("currentQ:", currentQ);
       return "border border-info text-center bg-secondary  text-light";
     } else if (review["q" + val]) {
       return "border border-danger text-center bg-info";
@@ -240,11 +249,13 @@ export const Questions = () => {
 
   const timerOver = () => {
     // alert("Time is Over");
+    setIsTimeOver(true);
     setShowModal(true);
   };
-  console.log('qArr?.length - Object.keys(visited)?.length:', qArr?.length - Object.keys(visited)?.length)
-  console.log('visited:', visited)
-  console.log('qArr?.length:', qArr?.length)
+
+  const handleSubmit = () => {
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -298,7 +309,7 @@ export const Questions = () => {
 
       <Modal
         show={showModal}
-        onHide={handleCloseModal}
+        onHide={() => handleCloseModal("close")}
         backdrop="static"
         keyboard={false}
       >
@@ -324,19 +335,13 @@ export const Questions = () => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button> */}
-          <Button variant="primary" onClick={handleCloseModal}>
+          <Button variant="primary" onClick={() => handleCloseModal("submit")}>
             Submit
           </Button>
         </Modal.Footer>
       </Modal>
 
       <Offcanvas show={show} onHide={handleClose} placement="bottom">
-        {/* <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header> */}
         <div className="d-flex p-1 justify-content-around">
           <div>* Answred</div>
           <div># Unanswer</div>
@@ -378,7 +383,7 @@ export const Questions = () => {
         <div
           onClick={() =>
             currentQ + 1 === qArr.length
-              ? timerOver()
+              ? handleSubmit()
               : handleQuestionChange(1)
           }
           className="text-primary"
@@ -389,9 +394,3 @@ export const Questions = () => {
     </>
   );
 };
-
-/* 
-  for(var i = 0; i < questions.length; i++){
-    if ()
-  }
-*/
