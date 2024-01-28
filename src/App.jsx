@@ -10,6 +10,7 @@ import { Questions } from "./pages/Questions";
 // import Timer from "./components/Timer";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { MockTestList } from "./pages/MockTestList";
+import { MyChart } from "./components/MyChart";
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        {/* <Route path="/" element={<MyChart />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/listing" element={<Listing />} />
         <Route path="/mockTestList" element={<MockTestList />} />

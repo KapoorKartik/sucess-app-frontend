@@ -48,7 +48,7 @@ export const Footer = () => {
         </div>
 
         <div className="col-3">
-          <Link to="/questions" className="text-decoration-none">
+          <Link to="/questions/m1" className="text-decoration-none">
             <img
               width="25"
               height="25"

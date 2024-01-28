@@ -175,7 +175,7 @@ export const Questions = () => {
 
     if (mockId === "m1") {
       setQarr(questionsArray);
-      setTimeInSec(10);
+      setTimeInSec(60);
       // setVisited(qArr.length - 1 )
     }
   };
