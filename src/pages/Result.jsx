@@ -3,8 +3,8 @@ import { MyChart } from "../components/MyChart";
 import { Link, useLocation } from "react-router-dom";
 
 export const Result = () => {
-    const {state} = useLocation();
-    console.log('state:', state)
+  const { state } = useLocation();
+  console.log("state:", state);
   return (
     <div className="">
       <h2>Unattemted : {state?.unattemted}</h2>
@@ -31,7 +31,25 @@ export const Result = () => {
         </div>
       </div>
       <MyChart />
-      <div className="d-flex bottom-container ms-3 me-3 navbar fixed-bottom">
+      <div className="mt-2 ms-2 me-2 bottom-container fw-bold">
+        <div className="d-flex p-1 justify-content-between text-info">
+          <div>Correct</div>
+          <div>5</div>
+        </div>
+        <div className="d-flex p-1 justify-content-between text-danger">
+          <div>Incorrect</div>
+          <div>10</div>
+        </div>
+        <div className="d-flex p-1 justify-content-between text-primary">
+          <div>Unattemped</div>
+          <div>22</div>
+        </div>
+        <div className="d-flex p-1 justify-content-between ">
+          <div>Total Score</div>
+          <div>50/100</div>
+        </div>
+      </div>
+      <div className="d-flex ms-3 me-3 navbar fixed-bottom">
         <Link
           to="/questions/m1"
           className="text-decoration-none text-light flex-grow-1 btn btn-primary fixed-bottom m-2"
