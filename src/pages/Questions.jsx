@@ -23,10 +23,11 @@ export const Questions = () => {
   const handleClose = () => setShow(false);
 
   const handleCloseModal = (flag) => {
-    if (flag === "submit") {
-      navigate("/result");
-    } else if (flag === "close" && isTimeOver) {
-      navigate("/");
+    let k = {
+      unattemted: qArr.length - Object.keys(ansArr).length,
+    };
+    if (flag === "submit" || (flag === "close" && isTimeOver)) {
+      navigate("/result", { state: k });
     }
     setShowModal(false);
   };
@@ -187,7 +188,7 @@ export const Questions = () => {
 
     if (mockId === "m1") {
       setQarr(questionsArray);
-      setTimeInSec(50);
+      setTimeInSec(5);
       // setVisited(qArr.length - 1 )
     }
   };

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 export const MockTestList = () => {
   const { state } = useLocation();
   const obj = state?.obj || {};
-  console.log("obj:", obj);
+  // console.log("obj:", obj);
   const fakeApi = () => {
     //* this api mock the actual case api working
     //* sends the test code to fetch all the information about available mocks
