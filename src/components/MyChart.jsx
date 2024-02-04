@@ -12,7 +12,7 @@ export const MyChart = () => {
     options: {
       chart: {
         type: "area",
-        height: 350,
+        height: 450,
         zoom: {
           enabled: false,
         },
@@ -32,7 +32,7 @@ export const MyChart = () => {
         align: "left",
       },
       xaxis: {
-        categories: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        categories: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100,],
         title: { text: "Marks" },
       },
       yaxis: {

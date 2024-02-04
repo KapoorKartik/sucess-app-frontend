@@ -25,6 +25,8 @@ export const Questions = () => {
   const handleCloseModal = (flag) => {
     let k = {
       unattemted: qArr.length - Object.keys(ansArr).length,
+      qArr,
+      ansArr,
     };
     if (flag === "submit" || (flag === "close" && isTimeOver)) {
       navigate("/result", { state: k });

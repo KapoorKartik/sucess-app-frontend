@@ -1,10 +1,17 @@
 import React from "react";
 import { MyChart } from "../components/MyChart";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { SeeAnswers } from "./SeeAnswers";
 
 export const Result = () => {
   const { state } = useLocation();
-  console.log("state:", state);
+  console.log('state:', state)
+  const navigate = useNavigate();
+  let k = {qArr : state?.qArr,
+  ansArr : state?.ansArr}
+  const handleSeeAnswers = () => {
+    navigate("/seeAnswer", {state : k});
+  };
   return (
     <div className="">
       <h2>Unattemted : {state?.unattemted}</h2>
@@ -50,12 +57,12 @@ export const Result = () => {
         </div>
       </div>
       <div className="d-flex ms-3 me-3 navbar fixed-bottom">
-        <Link
-          to="/questions/m1"
+        <div
+          onClick={handleSeeAnswers}
           className="text-decoration-none text-light flex-grow-1 btn btn-primary fixed-bottom m-2"
         >
           See Answers
-        </Link>
+        </div>
       </div>
     </div>
   );

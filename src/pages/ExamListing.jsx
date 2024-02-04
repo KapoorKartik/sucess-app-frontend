@@ -3,7 +3,7 @@ import { Tile } from "../components/test/Tile";
 import SearchBox from "../components/SearchBox";
 import { Link } from "react-router-dom";
 
-export const Listing = () => {
+export const ExamListing = () => {
   const arr = [
     {
       subject: "HP JOA IT",

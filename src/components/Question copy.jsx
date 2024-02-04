@@ -10,7 +10,7 @@ export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
     setAnsArr({ ...ansArr, [key]: val });
   };
   // const type = "radio";
-  let  isClick = false;
+  let isClick = false;
   useEffect(() => {
     // You can use an interval, a button click, or any other event to change the question
     const interval = setInterval(() => {
@@ -19,17 +19,17 @@ export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
 
     return () => clearInterval(interval);
   }, [currentQ]);
-    isClick = true;
+  isClick = true;
   return (
-    <div className={`shadow p-3 mx-2 rounded ${isClick ? 'custome-k' : ''}`}>
-      <div className="text-start ms-2 pb-2 border-info border-bottom">
-        Question : {q}
-      </div>
+    <div className={`shadow p-3 mx-2 rounded ${isClick ? "custome-k" : ""}`}>
+      <div className="text-start ms-2 pb-2">Question : {q}</div>
       {options?.map((option, index) => {
         return (
           <div
             key={option}
-            className={"form-check mx-3 py-2 d-flex border-0 border-info"  }
+            className={
+              "form-check py-2 my-2 d-flex border rounded border-danger"
+            }
           >
             <input
               className="form-check-input border border-primary"
@@ -39,6 +39,14 @@ export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
               value={option}
               onChange={(e) => handleClick(e.target.value)}
               checked={ansArr[key] === option}
+              disabled
+            />
+            <img
+              className="ms-2"
+              width="20"
+              height="20"
+              src="https://img.icons8.com/small/20/0d6efd/long-arrow-left.png"
+              alt="l"
             />
             <label
               className="form-check-label ps-2 flex-grow-1 text-start"
