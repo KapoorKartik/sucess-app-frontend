@@ -11,6 +11,7 @@ import { Questions } from "./pages/Questions";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { MockTestList } from "./pages/MockTestList";
 import { MyChart } from "./components/MyChart";
+import { Result } from "./pages/Result";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/mockTestList" element={<MockTestList />} />
         <Route path="/mockTest/:mockId" element={<MockTest />} />
         <Route path="/questions/:mockId" element={<Questions />} />
+        <Route path="/result" element={<Result/>} />
         <Route path='*' element={<h1>404 Page Not Found</h1>}></Route>
       </Routes>
       {currentPagePath === "/" || currentPagePath === "/listing" ?  <Footer /> : null}

@@ -24,7 +24,7 @@ export const Questions = () => {
 
   const handleCloseModal = (flag) => {
     if (flag === "submit") {
-      navigate("/");
+      navigate("/result");
     } else if (flag === "close" && isTimeOver) {
       navigate("/");
     }
