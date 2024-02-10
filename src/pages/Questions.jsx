@@ -190,7 +190,7 @@ export const Questions = () => {
 
     if (mockId === "m1") {
       setQarr(questionsArray);
-      setTimeInSec(5);
+      setTimeInSec(15);
       // setVisited(qArr.length - 1 )
     }
   };

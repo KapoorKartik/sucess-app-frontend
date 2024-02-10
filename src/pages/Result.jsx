@@ -7,8 +7,33 @@ export const Result = () => {
   const { state } = useLocation();
   console.log('state:', state)
   const navigate = useNavigate();
-  let k = {qArr : state?.qArr,
-  ansArr : state?.ansArr}
+  const masterAnsArr = {
+    q0: "Paris", // Capital of France
+    q1: "Jane Austen", // Writer of Romeo and Juliet
+    q2: "Mars", // Largest planet in our solar system
+    q3: "Silver", // Element with chemical symbol 'O'
+    q4: "1905", // Year Titanic sank
+    q5: "Leonardo da Vinci", // Painter of the Mona Lisa
+    q6: "Pound", // Currency of Japan
+    q7: "Canberra", // Capital of Australia
+    q8: "Alan Turing", // Known as the 'Father of Computer Science'
+    q9: "12", // Square root of 144
+    q10: "Mars", // Known as the 'Red Planet'
+    q11: "Cherry Blossom", // National flower of Japan
+    q12: "Harper Lee", // Author of 'To Kill a Mockingbird'
+    q13: "1989", // Year Berlin Wall fell
+    q14: "Au", // Chemical symbol for gold
+    q15: "Alexander Fleming", // Discovered penicillin
+    q16: "Pacific Ocean", // World's largest ocean
+    q17: "Japan", // Known as the 'Land of the Rising Sun'
+    q18: "Alexander Graham Bell", // Invented the telephone
+    q19: "299,792 kilometers per second", // Speed of light
+  };
+  let k = {
+    qArr: state?.qArr,
+    ansArr: state?.ansArr,
+    masterAnsArr: masterAnsArr,
+  };
   const handleSeeAnswers = () => {
     navigate("/seeAnswer", {state : k});
   };
