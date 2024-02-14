@@ -266,7 +266,7 @@ export const Questions = () => {
   return (
     <>
       <nav className="navbar navbar-light bg-primary liner-gradient mb-2 mx-0">
-        <div className="container-fluid text-white">HP JOA IT</div>
+        <div className="container-fluid text-white">{state?.subject}</div>
       </nav>
       {/* <div>{review[key] ? "Marked for review" : null}</div> */}
       <div className="p-2 mb-2 mt-1 mx-2 bg-body rounded text-start d-flex justify-content-between">
