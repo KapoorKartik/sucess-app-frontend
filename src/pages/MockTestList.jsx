@@ -1,16 +1,20 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const MockTestList = () => {
   const { state } = useLocation();
   const obj = state?.obj || {};
-  // console.log("obj:", obj);
+  console.log("obj:", obj);
   const fakeApi = () => {
     //* this api mock the actual case api working
     //* sends the test code to fetch all the information about available mocks
     if (obj.testCode === "T1") {
     } else if (obj.testCode === "T2") {
     }
+  };
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/questions/m1", { state: obj });
   };
   return (
     <>
@@ -35,13 +39,15 @@ export const MockTestList = () => {
               Duration: 2hrs
             </div>
           </div>
-          <Link to='/mockTest/m1'>
-          <img
-            src="https://img.icons8.com/small/25/long-arrow-right.png"
-            class="rounded-circle border-0 me-2"
-            alt="exploerBtn"
-          ></img>
-          </Link>
+          <div onClick={handleNavigate}>
+            {/* <Link to='/mockTest/m1'> */}
+            <img
+              src="https://img.icons8.com/small/25/long-arrow-right.png"
+              class="rounded-circle border-0 me-2"
+              alt="exploerBtn"
+            ></img>
+            {/* </Link> */}
+          </div>
         </div>
 
         <div className="fw-bold mt-1 ">Test Schedule</div>
@@ -52,7 +58,12 @@ export const MockTestList = () => {
               Duration: 2hrs
             </div>
           </div>
-          <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/lock--v1.png" alt="lock--v1"/>
+          <img
+            width="24"
+            height="24"
+            src="https://img.icons8.com/material-rounded/24/lock--v1.png"
+            alt="lock--v1"
+          />
         </div>
       </div>
     </>

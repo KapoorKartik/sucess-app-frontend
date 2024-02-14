@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Timer from "../components/Timer";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Question } from "../components/Question";
-import { ReactComponent as AppI } from "../icons/app_icon.svg";
+import { ReactComponent as AppIcon } from "../icons/app_icon.svg";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -19,17 +19,20 @@ export const Questions = () => {
   const [isTimeOver, setIsTimeOver] = useState(false);
 
   const navigate = useNavigate();
+  const {state} = useLocation()
+  console.log('state in question page:', state)
 
   const handleClose = () => setShow(false);
 
   const handleCloseModal = (flag) => {
-    let k = {
+    let passingState = {
       unattemted: qArr.length - Object.keys(ansArr).length,
       qArr,
       ansArr,
+      returnObj: state,
     };
     if (flag === "submit" || (flag === "close" && isTimeOver)) {
-      navigate("/result", { state: k });
+      navigate("/result", { state: passingState });
     }
     setShowModal(false);
   };
@@ -380,7 +383,7 @@ export const Questions = () => {
         </div>
         <div>|</div>
         <div onClick={handleShow} className="">
-          <AppI />
+          <AppIcon />
         </div>
         <div>|</div>
         <div
