@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "../utils/axios";
 
 export const MockTestList = () => {
   const { state } = useLocation();
+  const [mockTestDataArr,setMockTestDataArr] = useState([])
   const obj = state?.obj || {};
   console.log("obj:", obj);
-  const fakeApi = () => {
-    //* this api mock the actual case api working
-    //* sends the test code to fetch all the information about available mocks
-    if (obj.testCode === "T1") {
-    } else if (obj.testCode === "T2") {
-    }
+  const fetchAllMockTest = async () => {
+    const { data } = await axios.get("/exam-data/1");
+    console.log("data:", data);
+    setMockTestDataArr(data.result.tests);
   };
+  useEffect(() => fetchAllMockTest, []);
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/questions/m1", { state: obj });
+    navigate("/mockTest", { state: obj });
   };
   return (
     <>

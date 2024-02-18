@@ -1,6 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 export const MockTest = () => {
+  const {state} = useLocation();
+  console.log('state:', state)
+
+ 
   return (
     <>
       {/* <img height={"100px"} width={"100%"} src={bg} alt="background"/> */}

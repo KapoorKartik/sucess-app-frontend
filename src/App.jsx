@@ -23,7 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/listing" element={<ExamListing />} />
         <Route path="/mockTestList" element={<MockTestList />} />
-        <Route path="/mockTest/:mockId" element={<MockTest />} />
+        <Route path="/mockTest/" element={<MockTest />} />
         <Route path="/questions/:mockId" element={<Questions />} />
         <Route path="/result" element={<Result />} />
         <Route path="/seeAnswer" element={<SeeAnswers />} />
