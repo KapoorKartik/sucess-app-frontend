@@ -3,6 +3,7 @@ import { Tile } from "../components/test/Tile";
 import SearchBox from "../components/SearchBox";
 import { Link } from "react-router-dom";
 import axios from "../utils/axios";
+import { getData } from "../services/httpServices";
 
 export const ExamListing = () => {
   // let arr = [
@@ -59,8 +60,11 @@ export const ExamListing = () => {
   const fetchExamData = async () => {
     try {
       // const res = await axios.get("exam-list/");
-      const { data } = await axios.get("http://localhost/api/exam-list/");
+      // const { data } = await axios.get("http://localhost/api/exam-list/");
+      const data = await getData("exam-list");
+      console.log("data:", data);
       setArr(data.res);
+
       console.log("arr:", arr);
       // console.log("data:", data);
     } catch (error) {

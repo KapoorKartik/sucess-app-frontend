@@ -12,6 +12,8 @@ import { MockTestList } from "./pages/MockTestList";
 import { Result } from "./pages/Result";
 import { ExamListing } from "./pages/ExamListing";
 import { SeeAnswers } from "./pages/SeeAnswers";
+import { OtpAuth } from "./pages/OtpAuth";
+import { Login } from "./pages/Login";
 
 function App() {
   const location = useLocation();
@@ -20,6 +22,8 @@ function App() {
     <div className="App">
       <Routes>
         {/* <Route path="/" element={<MyChart />} /> */}
+        <Route path="/auth" element={<OtpAuth />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/listing" element={<ExamListing />} />
         <Route path="/mockTestList" element={<MockTestList />} />
