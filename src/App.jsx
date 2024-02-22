@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <Routes>
         {/* <Route path="/" element={<MyChart />} /> */}
-        <Route path="/auth" element={<OtpAuth />} />
+        <Route path="/otp" element={<OtpAuth />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/listing" element={<ExamListing />} />

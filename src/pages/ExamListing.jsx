@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Tile } from "../components/test/Tile";
 import SearchBox from "../components/SearchBox";
 import { Link } from "react-router-dom";
-import axios from "../utils/axios";
 import { getData } from "../services/httpServices";
 
 export const ExamListing = () => {

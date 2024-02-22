@@ -21,7 +21,7 @@ export const OtpAuth = () => {
     );
     console.log("data:", data);
     if (data === "OTP has verifed") {
-      naviage("/login");
+      naviage("/login", { state: formData.mobileNumber });
     }
   };
   return (
