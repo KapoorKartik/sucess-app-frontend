@@ -9,7 +9,8 @@ const getData = async (url) => {
 const postData = async (url, data) => {
   try {
     const res = await axios.post(url, data);
-    return { status: res.status };
+    console.log('res:', res)
+    return res;
 
   }catch(err){
     console.log('err:', err)

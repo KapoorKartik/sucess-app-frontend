@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
+import { getData } from "../services/httpServices";
 
 export const MockTestList = () => {
   const { state } = useLocation();
   const [mockTestDataArr,setMockTestDataArr] = useState([])
   const obj = state?.obj || {};
   console.log("obj:", obj);
+
   const fetchAllMockTest = async () => {
-    const { data } = await axios.get("/exam-data/1");
+    const data  = await getData("/exam-data/1");
     console.log("data:", data);
-    setMockTestDataArr(data.result.tests);
+    setMockTestDataArr(data?.result?.tests);
   };
+
   useEffect(() => fetchAllMockTest, []);
   const navigate = useNavigate();
   const handleNavigate = () => {

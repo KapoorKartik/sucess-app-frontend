@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { postData } from "../services/httpServices";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 export const Login = () => {
   const { state } = useLocation();
 
   const [formData, setFormData] = useState({});
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
   const handleInputChange = (inptuField, e) => {
     setFormData({ ...formData, [inptuField]: e.target.value });
   };
@@ -19,18 +21,35 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { ...formData, mobileNumber: state };
-    const { status } = await postData("create-user", data);
-    console.log("status:", status);
-    if (status === 201) {
+    setLoading(true);
+    const res = await postData("create-user", data);
+    console.log("data cookie:", res.data);
+    console.log("status:", res.status);
+
+    console.log('res.data.cookie:', btoa(res.data.cookie).replace("=","").split('salt'))
+    if (res.status === 201) {
+      setLoading(false);
+      document.cookie = `_token=${res.data.cookie}`;
       Swal.fire({
         icon: "success",
         text: "User Created sucessfully",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          navigate("/")
+        }
       });
+    }else {
+      console.log('err aa gya')
     }
   };
 
   return (
     <div className="m-3">
+      {loading ? (
+        <div class="spinner-grow text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      ) : null}
       <form>
         <div class="row">
           <div class="col">
@@ -66,19 +85,6 @@ export const Login = () => {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => handleInputChange("email", e)}
-          />
-        </div>
-        <div class="mb-3">
-          <label for="mobileNumber" class="form-label">
-            Mobile Number
-          </label>
-          <input
-            type="mobileNumber"
-            class="form-control bg bg-secondary"
-            id="mobileNumber"
-            onChange={(e) => handleInputChange("mobileNumber", e)}
-            value={state}
-            readOnly
           />
         </div>
         <div class="mb-3">
