@@ -1,22 +1,27 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 export const MockTest = () => {
   const {state} = useLocation();
   console.log('state:', state)
-
+  const navigate = useNavigate()
+  const handleBackBtn = () =>{
+    navigate("/mockTestList", {state : {obj : state} }); //* why stuch strcture because of my strcture in mock test listing page
+  }
  
   return (
     <>
       {/* <img height={"100px"} width={"100%"} src={bg} alt="background"/> */}
       <div className="bg-image rounded m-2 shadow">
         <div className="text-start bg-transparent py-2">
-          <img
-            className="ms-2"
-            width="28"
-            height="28"
-            src="https://img.icons8.com/small/28/FFFFFF/long-arrow-left.png"
-            alt="l"
-          />
+          <div className="mt-2" onClick={handleBackBtn}>
+            <img
+              className="ms-2"
+              width="28"
+              height="28"
+              src="https://img.icons8.com/small/28/FFFFFF/long-arrow-left.png"
+              alt="l"
+            />
+          </div>
           <div className="ms-2 fw-bold text-light">HP JOA IT</div>
           <small className="ms-2 text-light">Instructions</small>
         </div>

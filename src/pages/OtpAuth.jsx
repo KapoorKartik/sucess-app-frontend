@@ -27,13 +27,13 @@ export const OtpAuth = () => {
   return (
     <div className="m-3">
       <form>
-        <div class="input-group my-3">
-          <span class="input-group-text" id="basic-addon1">
+        <div className="input-group my-3">
+          <span className="input-group-text" id="basic-addon1">
             +91
           </span>
           <input
             type="number"
-            class="form-control"
+            className="form-control"
             placeholder="Mobile Number"
             aria-label="Recipient's username"
             aria-describedby="button-addon2"
@@ -42,25 +42,25 @@ export const OtpAuth = () => {
           />
         </div>
         {isSendOtp ? (
-          <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">
+          <div className="mb-3 row">
+            <label for="inputPassword" className="col-sm-2 col-form-label">
               OTP
             </label>
-            <div class="col-sm-10">
+            <div className="col-sm-10">
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="inputPassword"
                 onChange={(e) => handleInput(e.target.value, "OTP")}
               />
             </div>
           </div>
         ) : null}
-        <button type="button" class="btn btn-primary" onClick={verifyOtp}>
+        <button type="button" className="btn btn-primary" onClick={verifyOtp}>
           Submit
         </button>
         <button
-          class="btn btn-outline-secondary"
+          className="btn btn-outline-secondary"
           type="button"
           id="button-addon2"
           onClick={generateOTP}

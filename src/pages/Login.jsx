@@ -9,7 +9,7 @@ export const Login = () => {
 
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleInputChange = (inptuField, e) => {
     setFormData({ ...formData, [inptuField]: e.target.value });
   };
@@ -26,7 +26,10 @@ export const Login = () => {
     console.log("data cookie:", res.data);
     console.log("status:", res.status);
 
-    console.log('res.data.cookie:', btoa(res.data.cookie).replace("=","").split('salt'))
+    console.log(
+      "res.data.cookie:",
+      btoa(res.data.cookie).replace("=", "").split("salt")
+    );
     if (res.status === 201) {
       setLoading(false);
       document.cookie = `_token=${res.data.cookie}`;
@@ -35,39 +38,39 @@ export const Login = () => {
         text: "User Created sucessfully",
       }).then((res) => {
         if (res.isConfirmed) {
-          navigate("/")
+          navigate("/");
         }
       });
-    }else {
-      console.log('err aa gya')
+    } else {
+      console.log("err aa gya");
     }
   };
 
   return (
     <div className="m-3">
       {loading ? (
-        <div class="spinner-grow text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <div className="spinner-grow text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       ) : null}
       <form>
-        <div class="row">
-          <div class="col">
+        <div className="row">
+          <div className="col">
             <label for="floatingFirstName">First Name</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="First name"
               aria-label="First name"
               id="floatingFirstName"
               onChange={(e) => handleInputChange("firstName", e)}
             />
           </div>
-          <div class="col">
+          <div className="col">
             <label for="floatingLastName">Last Name</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Last name"
               aria-label="Last name"
               id="floatingLastName"
@@ -75,20 +78,20 @@ export const Login = () => {
             />
           </div>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => handleInputChange("email", e)}
           />
         </div>
-        <div class="mb-3">
-          <label class="form-label">Dob</label>
+        <div className="mb-3">
+          <label className="form-label">Dob</label>
           <input
             type="date"
             className="form-control mb-3" // Bootstrap class for styling
@@ -100,19 +103,19 @@ export const Login = () => {
           />
         </div>
 
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
+        <div className="mb-3">
+          <label for="exampleInputEmail1" className="form-label">
             Pin Code
           </label>
           <input
             type="number"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => handleInputChange("pinCode", e)}
           />
         </div>
-        <button onClick={(e) => handleSubmit(e)} class="btn btn-primary">
+        <button onClick={(e) => handleSubmit(e)} className="btn btn-primary">
           Submit
         </button>
       </form>
