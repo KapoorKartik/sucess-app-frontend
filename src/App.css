@@ -35,10 +35,11 @@
   box-shadow: none !important;
 }
 
-.custome-k {
+.custome-effects {
   /* color: #0e43ca ; */
-  animation: fadet 2s ;
+  animation: fadet 500ms ;
 }
+
 
 @keyframes fadet {
   0% {

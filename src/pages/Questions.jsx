@@ -6,6 +6,7 @@ import { ReactComponent as AppIcon } from "../icons/app_icon.svg";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { getData } from "../services/httpServices";
 export const Questions = () => {
   const { mockId } = useParams();
   const [qArr, setQarr] = useState([]);
@@ -19,8 +20,8 @@ export const Questions = () => {
   const [isTimeOver, setIsTimeOver] = useState(false);
 
   const navigate = useNavigate();
-  const {state} = useLocation()
-  console.log('state in question page:', state)
+  const { state } = useLocation();
+  console.log("state in question page:", state);
 
   const handleClose = () => setShow(false);
 
@@ -41,7 +42,7 @@ export const Questions = () => {
 
   // console.log("mockID:", mockId);
 
-  const getQuestionsByMockId = (mockId) => {
+  const getQuestionsByMockIdDummy = (mockID = "m1") => {
     let questionsArray = [
       {
         question: "What is the capital of France?",
@@ -197,7 +198,34 @@ export const Questions = () => {
       // setVisited(qArr.length - 1 )
     }
   };
-  useEffect(() => getQuestionsByMockId(mockId), []);
+ 
+  useEffect(() => {
+    const getQuestionsByMockId = async () => {
+      console.log("state?.mockId:", state?.mockId);
+      const getQuestions = await getData(`test-question-set/${state?.mockId}`);
+      console.log("getQuestions:", getQuestions.data);
+      setQarr(getQuestions.data);
+      const time = state?.time * 60;
+      setTimeInSec(time)
+      /*
+      {
+    "subject": "IIT Jee 1",
+    "totalTest": "20",
+    "validity": "6 month",
+    "isLast": false,
+    "testCode": "2",
+    "mockId": "m1",
+    "test": "Mock Test 1",
+    "marks": "100",
+    "question": "100",
+    "time": "60",
+    "tag": "free"
+} */
+    };
+
+    getQuestionsByMockId(); // Call the async function immediately
+  }, []);
+
   const handleQuestionChange = (val) => {
     setCurrentQ((previous) => {
       if (previous + val === qArr.length || previous + val < 0) {

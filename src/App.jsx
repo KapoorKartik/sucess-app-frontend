@@ -28,7 +28,7 @@ function App() {
         <Route path="/listing" element={<ExamListing />} />
         <Route path="/mockTestList" element={<MockTestList />} />
         <Route path="/mockTest/" element={<MockTest />} />
-        <Route path="/questions/:mockId" element={<Questions />} />
+        <Route path="/questions" element={<Questions />} />
         <Route path="/result" element={<Result />} />
         <Route path="/seeAnswer" element={<SeeAnswers />} />
         <Route path="*" element={<h1>404 Page Not Found</h1>}></Route>

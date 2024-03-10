@@ -23,7 +23,8 @@ export const MockTestList = () => {
     if (e.tag === "paid") {
       Swal.fire("", "Pay 29 monthly to access all mock tests", "info");
     } else {
-      navigate("/mockTest", { state: obj });
+      const dataForNextPage = {...obj , ...e}
+      navigate("/mockTest", { state: dataForNextPage });
     }
   };
   return (

@@ -1,13 +1,17 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 export const MockTest = () => {
-  const {state} = useLocation();
-  console.log('state:', state)
-  const navigate = useNavigate()
-  const handleBackBtn = () =>{
-    navigate("/mockTestList", {state : {obj : state} }); //* why stuch strcture because of my strcture in mock test listing page
+  const { state } = useLocation();
+  console.log("state:", state);
+  const navigate = useNavigate();
+  const handleBackBtn = () => {
+    navigate("/mockTestList", { state: { obj: state } }); //* why stuch strcture because of my strcture in mock test listing page
+  };
+
+  const handleNavigate = ()=>{
+    navigate("/questions",{state : state});
   }
- 
+
   return (
     <>
       {/* <img height={"100px"} width={"100%"} src={bg} alt="background"/> */}
@@ -22,7 +26,7 @@ export const MockTest = () => {
               alt="l"
             />
           </div>
-          <div className="ms-2 fw-bold text-light">HP JOA IT</div>
+          <div className="ms-2 fw-bold text-light">{state?.subject}</div>
           <small className="ms-2 text-light">Instructions</small>
         </div>
       </div>
@@ -30,13 +34,16 @@ export const MockTest = () => {
 
       <div className="d-flex justify-content-around text-start">
         <small className="fw-light text-muted">
-          60<br></br> Minutes
+          {state?.time}
+          <br></br> Minutes
         </small>
         <small className="fw-light text-muted">
-          70<br></br> Questions
+          {state?.question}
+          <br></br> Questions
         </small>
         <small className="fw-light text-muted">
-          70<br></br> Marks
+          {state?.marks}
+          <br></br> Marks
         </small>
       </div>
       <hr />
@@ -53,12 +60,9 @@ export const MockTest = () => {
         </ul>
       </div>
       <div className="d-flex bottom-container ms-3 me-3 navbar fixed-bottom">
-        <Link
-          to="/questions/m1"
-          className="text-decoration-none text-light flex-grow-1 btn btn-primary fixed-bottom m-2"
-        >
+        <div className="text-decoration-none text-light flex-grow-1 btn btn-primary fixed-bottom m-2" onClick={handleNavigate}>
           Start
-        </Link>
+        </div>
       </div>
     </>
   );

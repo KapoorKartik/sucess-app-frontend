@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
   // console.log('questionObj:', questionObj)
-  const q = questionObj?.question;
+  const q = questionObj?.ques;
   const options = questionObj?.options;
   let key = "q" + currentQ;
   const handleClick = (val) => {
@@ -10,18 +10,27 @@ export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
     setAnsArr({ ...ansArr, [key]: val });
   };
   // const type = "radio";
-  let  isClick = false;
-  useEffect(() => {
-    // You can use an interval, a button click, or any other event to change the question
-    const interval = setInterval(() => {
-      isClick = true;
-    }, 5000);
+  // let isClick = false;
 
-    return () => clearInterval(interval);
+  const [isVisible, setIsVisible] = useState(false);
+  const handleClickCss = () => {
+    setIsVisible(true);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 2000); // After 2 seconds, fade out
+  };
+  useEffect(() => {
+    setIsVisible(true);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 500);
   }, [currentQ]);
-    isClick = true;
   return (
-    <div className={`shadow p-3 mx-2 rounded ${isClick ? 'custome-k' : ''}`}>
+    <div
+      className={`shadow p-3 mx-2 rounded ${
+        isVisible ? "custome-effects" : null
+      }`}
+    >
       <div className="text-start ms-2 pb-2 border-info border-bottom">
         Question : {q}
       </div>
@@ -29,7 +38,7 @@ export const Question = ({ questionObj, setAnsArr, ansArr, currentQ }) => {
         return (
           <div
             key={option}
-            className={"form-check mx-3 py-2 d-flex border-0 border-info"  }
+            className={"form-check mx-3 py-2 d-flex border-0 border-info"}
           >
             <input
               className="form-check-input border border-primary"
