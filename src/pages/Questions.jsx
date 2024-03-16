@@ -6,7 +6,7 @@ import { ReactComponent as AppIcon } from "../icons/app_icon.svg";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { getData } from "../services/httpServices";
+import { getData, postData } from "../services/httpServices";
 export const Questions = () => {
   const { mockId } = useParams();
   const [qArr, setQarr] = useState([]);
@@ -33,6 +33,12 @@ export const Questions = () => {
       returnObj: state,
     };
     if (flag === "submit" || (flag === "close" && isTimeOver)) {
+      //* step one fetch the answer arr 
+      //* calculate the result
+      //* post the result 
+      //* navigate to result page 
+      // const res = postData("saved-result", {ansArr});
+      console.log('res:', res)
       navigate("/result", { state: passingState });
     }
     setShowModal(false);
@@ -198,15 +204,16 @@ export const Questions = () => {
       // setVisited(qArr.length - 1 )
     }
   };
- 
+
   useEffect(() => {
     const getQuestionsByMockId = async () => {
       console.log("state?.mockId:", state?.mockId);
+      console.log('state:', state)
       const getQuestions = await getData(`test-question-set/${state?.mockId}`);
       console.log("getQuestions:", getQuestions.data);
       setQarr(getQuestions.data);
       const time = state?.time * 60;
-      setTimeInSec(time)
+      setTimeInSec(time);
       /*
       {
     "subject": "IIT Jee 1",
